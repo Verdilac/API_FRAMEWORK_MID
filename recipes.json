@@ -1,0 +1,32 @@
+[
+    {
+        "recipeId": 1,
+        "title": "Spaghetti Bolognese",
+        "cuisine": "Italian",
+        "ingredients": [
+            "Ground beef",
+            "Tomato sauce",
+            "Onion",
+            "Garlic",
+            "Spaghetti"
+        ],
+        "instructions": "Cook ground beef with onions and garlic. Add tomato sauce and simmer. Serve over cooked spaghetti.",
+        "prepTime": 20,
+        "cookTime": 40
+    },
+    {
+        "recipeId": 2,
+        "title": "Chicken Curry",
+        "cuisine": "Indian",
+        "ingredients": [
+            "Chicken",
+            "Curry powder",
+            "Onion",
+            "Tomato",
+            "Coconut milk"
+        ],
+        "instructions": "Saute onions, add curry powder. Add chicken, tomatoes, and coconut milk. Simmer until chicken is cooked.",
+        "prepTime": 15,
+        "cookTime": 30
+    }
+]

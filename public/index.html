@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Management System</title>
+</head>
+
+<body>
+    <h1>Management all your Recipies</h1>
+
+    <h2>All Recipes</h2>
+    <button onclick="getAllRecipes()">Get All Recipes</button>
+    <div id="allRecipes"></div>
+
+    <h2>All Ingredients</h2>
+    <button onclick="getAllIngredients()">Get All Ingredients</button>
+    <div id="allIngredients"></div>
+
+    <h2>Cuisine</h2>
+    <form id="getCuisineForm">
+        <label for="cuisine">Enter Cuisine:</label>
+        <input type="text" id="cuisine" name="cuisine">
+        <button type="submit">Get Recipes</button>
+    </form>
+    <div id="recipesByCuisine"></div>
+
+    <h2>Recipe ID</h2>
+    <form id="getRecipeForm">
+        <label for="recipeId">Enter Recipe ID:</label>
+        <input type="text" id="recipeId" name="recipeId">
+        <button type="submit">Get Recipe</button>
+    </form>
+    <div id="recipeDetails"></div>
+
+    <h2>Ingredient</h2>
+    <form id="getIngredientForm">
+        <label for="ingredientName">Enter Ingredient Name:</label>
+        <input type="text" id="ingredientName" name="ingredientName">
+        <button type="submit">Get Ingredient Profile</button>
+    </form>
+    <div id="ingredientProfile"></div>
+
+    <script>
+        function getAllRecipes() {
+            fetch('/recipes')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('allRecipes').innerHTML = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function getAllIngredients() {
+            fetch('/ingredients')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('allIngredients').innerHTML = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('getCuisineForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const cuisine = document.getElementById('cuisine').value;
+            fetch(`/recipes/cuisine/${cuisine}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('recipesByCuisine').innerHTML = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('getRecipeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const recipeId = document.getElementById('recipeId').value;
+            fetch(`/recipe/${recipeId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('recipeDetails').innerHTML = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('getIngredientForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const ingredientName = document.getElementById('ingredientName').value;
+            fetch(`/ingredient/${ingredientName}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ingredientProfile').innerHTML = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+
+</html>
